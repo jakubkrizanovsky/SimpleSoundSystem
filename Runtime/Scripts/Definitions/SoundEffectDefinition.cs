@@ -12,10 +12,10 @@ namespace JakubKrizanovsky.SimpleSoundSystem
 		public AudioClip AudioClip {get; private set;}
 
 		[field: SerializeField]
-		public float MinPitch {get; private set;}
+		public float MinPitch {get; private set;} = 0.9f;
 
 		[field: SerializeField]
-		public float MaxPitch {get; private set;}
+		public float MaxPitch {get; private set;} = 1.1f;
 
         public override void InitializeSoundEffect(SoundEffect soundEffect, float pitchMultiplier) {
             AudioSource audioSource = soundEffect.AudioSource;
