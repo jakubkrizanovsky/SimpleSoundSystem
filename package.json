@@ -1,0 +1,10 @@
+{
+  "name": "com.jakubkrizanovsky.simplesoundsystem",
+  "version": "1.0.0",
+  "displayName": "Simple Sound System",
+  "description": "Simple sound system package for 3D Unity projects",
+  "author": {
+    "name": "Jakub Krizanovsky",
+    "email": "jakub.krizanovsky@gmail.com"
+  }
+}
