@@ -33,11 +33,15 @@ namespace JakubKrizanovsky.SimpleSoundSystem
 			);
 		}
 
-		public void PlaySoundEffect(ASoundEffectDefinition sfxDefinition, Vector3 position, float pitchMultiplier = 1f) {
+		public void PlaySoundEffect(ASoundEffectDefinition sfxDefinition, Vector3 position, 
+				SoundPlayParameters parameters = default) 
+		{
 			SoundEffect soundEffect = _sfxPool.Get();
-			sfxDefinition.InitializeSoundEffect(soundEffect, pitchMultiplier);
+			soundEffect.transform.position = position;
+			
 			soundEffect.OnFinishedPlaying += OnSoundFinishedPlaying;
-			soundEffect.Play(sfxDefinition, position);
+
+			soundEffect.Play(sfxDefinition, parameters);
 		}
 
 		private void OnSoundFinishedPlaying(SoundEffect soundEffect) {

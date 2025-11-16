@@ -10,12 +10,14 @@ namespace JakubKrizanovsky.SimpleSoundSystem
 		public event Action<SoundEffect> OnFinishedPlaying;
 		public AudioSource AudioSource {get; private set;}
 
-		private void Awake() {
+		public void Awake() {
 			AudioSource = GetComponent<AudioSource>();
 		}
 
-		public void Play(ASoundEffectDefinition sfxDefinition, Vector3 position) {
-			transform.position = position;
+		public void Play(ASoundEffectDefinition sfxDefinition, SoundPlayParameters parameters = default) {
+			parameters ??= new();
+
+			sfxDefinition.InitializeSoundEffect(this, parameters);
 			AudioSource.Play();
 			StartCoroutine(WaitForEnd_Coroutine());
 		}

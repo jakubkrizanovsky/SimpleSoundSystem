@@ -6,10 +6,10 @@ namespace JakubKrizanovsky.SimpleSoundSystem
 	public class SoundEffectDefinition : ASoundEffectDefinition
 	{
 		[field: SerializeField]
-		public string Name {get; private set;}
+		public AudioClip AudioClip {get; private set;}
 
 		[field: SerializeField]
-		public AudioClip AudioClip {get; private set;}
+		public float Volume {get; private set;} = 0.5f;
 
 		[field: SerializeField]
 		public float MinPitch {get; private set;} = 0.9f;
@@ -17,10 +17,12 @@ namespace JakubKrizanovsky.SimpleSoundSystem
 		[field: SerializeField]
 		public float MaxPitch {get; private set;} = 1.1f;
 
-        public override void InitializeSoundEffect(SoundEffect soundEffect, float pitchMultiplier) {
+        internal override void InitializeSoundEffect(SoundEffect soundEffect, SoundPlayParameters parameters) {
             AudioSource audioSource = soundEffect.AudioSource;
 			audioSource.clip = AudioClip;
-			audioSource.pitch = pitchMultiplier * Random.Range(MinPitch, MaxPitch);
+
+			audioSource.volume = parameters.VolumeMultiplier * Volume;
+			audioSource.pitch = parameters.PitchMultiplier * Random.Range(MinPitch, MaxPitch);
         }
     }
 }

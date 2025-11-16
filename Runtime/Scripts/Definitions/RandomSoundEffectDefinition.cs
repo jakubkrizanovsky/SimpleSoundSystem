@@ -8,9 +8,9 @@ namespace JakubKrizanovsky.SimpleSoundSystem
 		[SerializeField]
 		private ASoundEffectDefinition[] _definitions;
 
-        public override void InitializeSoundEffect(SoundEffect soundEffect, float pitchMultiplier) {
+        internal override void InitializeSoundEffect(SoundEffect soundEffect, SoundPlayParameters parameters) {
             ASoundEffectDefinition definition = _definitions[Random.Range(0, _definitions.Length)];
-			definition.InitializeSoundEffect(soundEffect, pitchMultiplier);
+			definition.InitializeSoundEffect(soundEffect, parameters);
         }
     }
 }
